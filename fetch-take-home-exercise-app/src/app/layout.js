@@ -1,6 +1,6 @@
 export const metadata = {
-  title: "Purpefct Match",
-  description: "Find your purfect puppy for you!",
+  title: "Pupfect Match",
+  description: "Find your purrfect puppy for you!",
 };
 
 export default function RootLayout({ children }) {

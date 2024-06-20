@@ -36,7 +36,7 @@ export default function Page() {
 
   return (
     <Flex flexDirection="column" alignItems="center">
-      <Heading size="2xl">Hello, Welcome to Purpect Match 🐶</Heading>
+      <Heading size="2xl">Hello, Welcome to Pupfect Match 🐶</Heading>
       <Heading>Please login</Heading>
       <Input
         placeholder="Enter Your Name"
