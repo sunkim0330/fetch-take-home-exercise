@@ -1,4 +1,5 @@
 "use client";
+import { login } from "@/utils/api";
 import { Button, Flex, Heading, Input, useToast } from "@chakra-ui/react";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
@@ -10,19 +11,10 @@ export default function Page() {
 
   const handleClick = async (event) => {
     event.preventDefault();
-    const response = await fetch("/api/login", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({ name, email }),
-    });
-
-    if (response.ok) {
-      console.log("response", response);
+    try {
+      await login(name, email);
       router.push("/dashboard");
-    } else {
-      const errorData = await response.json();
+    } catch (error) {
       toast({
         title: "Login Failed",
         description: errorData.message || "Unknown error",
