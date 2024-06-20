@@ -2,7 +2,7 @@ export default async function POST(req, res) {
   const { name, email } = req.body;
   const url = "https://frontend-take-home-service.fetch.com";
   try {
-    const loginResponse = await fetch(`${url}/auth/login`, {
+    await fetch(`${url}/auth/login`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

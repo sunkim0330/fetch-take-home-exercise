@@ -17,7 +17,7 @@ export default function Page() {
     } catch (error) {
       toast({
         title: "Login Failed",
-        description: errorData.message || "Unknown error",
+        description: error.message || "Unknown error",
         status: "error",
         position: "top",
         duration: 5000,

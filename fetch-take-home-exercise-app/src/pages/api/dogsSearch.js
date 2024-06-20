@@ -1,6 +1,5 @@
 export default async function GET(req, res) {
   const url = "https://frontend-take-home-service.fetch.com";
-  const { page = 1, breed, size, zipCodes } = req.query;
 
   try {
     const dogsResponse = await fetch(`${url}/dogs/search`, {
@@ -10,5 +9,18 @@ export default async function GET(req, res) {
         "Content-Type": "application/json",
       },
     });
-  } catch {}
+
+    if (!dogsResponse.ok) {
+      const error = await dogsResponse.json();
+      console.log("response", dogsResponse);
+      return res.status(dogsResponse.status).json({ message: error.message });
+    }
+
+    const data = await dogsResponse.json();
+    return res.status(200).json(data);
+  } catch (error) {
+    return res.status(500).json({
+      message: "There was an error while fetching dogs",
+    });
+  }
 }

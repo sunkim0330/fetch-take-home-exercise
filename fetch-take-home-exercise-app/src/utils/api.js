@@ -16,7 +16,7 @@ export async function login(name, email) {
 }
 
 export async function searchDogs(query) {
-  const response = await fetch(`/api/dogSearch?${query}`, {
+  const response = await fetch(`/api/dogsSearch?${query}`, {
     method: "GET",
     credentials: "include",
     headers: {
@@ -27,11 +27,12 @@ export async function searchDogs(query) {
     const error = await response.json();
     throw new Error(error.message);
   }
-
-  return response.json();
+  console.log("repsponse in api", response);
+  const data = await response.json();
+  return data;
 }
 
-export async function fetchDogDetails(ids) {
+export async function fetchDogsInformation(ids) {
   const response = await fetch("/api/dogs", {
     method: "POST",
     headers: {

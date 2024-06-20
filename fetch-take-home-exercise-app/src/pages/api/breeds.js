@@ -9,9 +9,9 @@ export default async function GET(req, res) {
       credentials: "include",
     });
 
-    return resizeBy.status(200).json({ breedResponse });
+    return res.status(200).json({ breedResponse });
   } catch {
-    return resizeBy.status(500).json({
+    return res.status(500).json({
       message: "There was an error while fetching breeds information",
     });
   }

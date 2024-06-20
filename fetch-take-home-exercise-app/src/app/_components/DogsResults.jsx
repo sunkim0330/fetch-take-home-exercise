@@ -1,37 +1,17 @@
 import { useState, useEffect } from "react";
-import { useQuery } from "@tanstack/react-query";
-import { searchDogs } from "@/utils/api";
+import { Heading } from "@chakra-ui/react";
+import { fetchDogsInformation } from "@/utils/api";
 
-export default function DogsResult() {
-  const [resultIds, setResultIds] = useState([]);
-  const [total, setTotal] = useState(0);
-  const [nextPage, setNextPage] = useState(null);
-  const [prevPage, setPrevPage] = useState(null);
-  const [filters, setFilters] = useState({});
+export default function DogsResult(props) {
   const [dogDetails, setDogDetails] = useState([]);
 
   useEffect(() => {
-    fetchDogs();
-  }, []);
-
-  const fetchDogs = async (query = "") => {
-    try {
-      const response = await searchDogs(query);
-
-      const data = await response.json();
-      setResultIds(data.resultIds);
-      setTotal(data.total);
-      setNextPage(data.next);
-      setPrevPage(data.prev);
-      fetchDogDetails(data.resultIds); // Fetch details for initial resultIds
-    } catch (error) {
-      console.error("Error fetching data:", error);
-    }
-  };
+    fetchDogDetails(resultIds);
+  }, [resultIds]);
 
   const fetchDogDetails = async (ids) => {
     try {
-      const response = await fetchDogDetails(ids);
+      const response = await fetchDogsInformation(ids);
       const data = await response.json();
       setDogDetails(data);
     } catch (error) {
@@ -39,5 +19,9 @@ export default function DogsResult() {
     }
   };
 
-  return <Flex></Flex>;
+  return (
+    <Flex>
+      <Text>available for possible match!</Text>
+    </Flex>
+  );
 }
